@@ -1,16 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro; // Using TextMeshPro
+using TMPro;
 
 public class ObjectivesManager : MonoBehaviour
 {
-    public GameObject objectivesPanel; // Reference to the Objectives Panel UI
+    public GameObject objectivesPanel;
     public TextMeshProUGUI objective1Text;
     public TextMeshProUGUI objective2Text;
     public TextMeshProUGUI objective3Text;
+    public TextMeshProUGUI[] objectiveTexts;
+    public TextMeshProUGUI objectiveCounterText; // Text to show 0/3, 1/3, etc.
 
-    private bool objectivesPanelActive = false; // To track the panel's visibility
+    private bool objectivesPanelActive = false;
+    private int completedObjectives = 0;
+    private int totalObjectives;
 
     void Start()
     {
@@ -19,13 +23,19 @@ public class ObjectivesManager : MonoBehaviour
         objective2Text.text = "2. Collect Coffee Machine in the Hardware store.";
         objective3Text.text = "3. Collect milk & eggs from the supermarket.";
 
+        // Set the total objectives count
+        totalObjectives = objectiveTexts.Length;
+
+        // Initialize the objective counter display
+        UpdateObjectiveCounter();
+
         // Ensure the panel is hidden at the start
         objectivesPanel.SetActive(objectivesPanelActive);
     }
 
-        private void Update()
+    private void Update()
     {
-        // Toggle the objectives panel when the "F" key is pressed
+        // Toggle the objectives panel when the "G" key is pressed
         if (Input.GetKeyDown(KeyCode.G))
         {
             objectivesPanelActive = !objectivesPanelActive;
@@ -33,32 +43,30 @@ public class ObjectivesManager : MonoBehaviour
         }
     }
 
-
-      public void CompleteObjective(int objectiveNumber)
+    public void CompleteObjective(int objectiveNumber)
     {
-        switch (objectiveNumber)
+        if (objectiveNumber >= 0 && objectiveNumber < objectiveTexts.Length)
         {
-            case 1:
-                if (!objective1Text.text.Contains("<s>"))
-                {
-                    objective1Text.text = "<s>1. Find the key.</s>"; // Strike-through text
-                }
-                break;
-            case 2:
-                if (!objective2Text.text.Contains("<s>"))
-                {
-                    objective2Text.text = "<s>2. Unlock the door.</s>";
-                }
-                break;
-            case 3:
-                if (!objective3Text.text.Contains("<s>"))
-                {
-                    objective3Text.text = "<s>3. Escape the room.</s>";
-                }
-                break;
-            default:
-                Debug.LogWarning("Invalid objective number.");
-                break;
+            if (!objectiveTexts[objectiveNumber].text.Contains("<s>")) // Ensure it hasn't been completed already
+            {
+                // Mark the objective as completed
+                objectiveTexts[objectiveNumber].text = "<s>" + objectiveTexts[objectiveNumber].text + "</s>";
+
+                // Increment the completed objectives count
+                completedObjectives++;
+
+                // Update the objective counter display
+                UpdateObjectiveCounter();
+            }
         }
+        else
+        {
+            Debug.LogWarning("Objective number is out of range!");
+        }
+    }
+
+    private void UpdateObjectiveCounter()
+    {
+        objectiveCounterText.text = $"{completedObjectives}/{totalObjectives}";
     }
 }

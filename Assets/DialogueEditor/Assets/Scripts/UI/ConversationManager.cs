@@ -86,21 +86,28 @@ namespace DialogueEditor
         // Awake, Start, Destroy, Update
         //--------------------------------------
 
-        private void Awake()
-        {
-            // Destroy myself if I am not the singleton
-            if (Instance != null && Instance != this)
-            {
-                GameObject.Destroy(this.gameObject);
-            }
-            Instance = this;
+private void Awake()
+{
+    // Check if an instance already exists
+    if (Instance != null && Instance != this)
+    {
+        Debug.LogWarning("Another ConversationManager instance found, keeping both instances.");
+        // You could add additional logic here if you need to handle multiple instances
+        return;
+    }
 
-            m_uiOptions = new List<UIConversationButton>();
+    // Set this as the singleton instance
+    Instance = this;
+    DontDestroyOnLoad(gameObject);
 
-            NpcIcon.sprite = BlankSprite;
-            DialogueText.text = "";
-            TurnOffUI();
-        }
+    // Initialize UI elements
+    m_uiOptions = new List<UIConversationButton>();
+    NpcIcon.sprite = BlankSprite;
+    DialogueText.text = "";
+    TurnOffUI();
+}
+
+
 
         private void OnDestroy()
         {
