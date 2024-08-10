@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 public class AIWalk : MonoBehaviour
 {
+    
     public Transform player; // Reference to the player's transform
     private NavMeshAgent navMeshAgent; // Reference to the NavMeshAgent component
 
@@ -22,4 +23,6 @@ public class AIWalk : MonoBehaviour
             navMeshAgent.SetDestination(player.position);
         }
     }
+
+    
 }
