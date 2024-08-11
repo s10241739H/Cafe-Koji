@@ -146,4 +146,4 @@ Textures: Agnes, Ain
 
 Development Tools: Unity Engine, KHAI 
 
-Coding Assistance: https://chatgpt.com/ AND KHAI 
+Coding Assistance: https://chatgpt.com/ AND KHAI AND AIN
