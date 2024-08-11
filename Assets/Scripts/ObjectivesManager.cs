@@ -65,6 +65,11 @@ public class ObjectivesManager : MonoBehaviour
         }
     }
 
+    public bool AreAllObjectivesCompleted()
+    {
+        return completedObjectives >= totalObjectives;
+    }
+
     private void UpdateObjectiveCounter()
     {
         objectiveCounterText.text = $"{completedObjectives}/{totalObjectives}";
