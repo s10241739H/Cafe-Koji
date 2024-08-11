@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/StartMenu.unity
     guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
+    path: Assets/Scenes/CutsceneBed.unity
+    guid: 081aa682b155a6648a3da84af81ef0a2
+  - enabled: 1
     path: Assets/Scenes/Bedroom.unity
     guid: 2d37e91ae88c3b547a6f3c504af8514e
   - enabled: 1
@@ -17,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/CafeInterior.unity
     guid: d50c18a69e93a9344aeaf8d0390dec7f
+  - enabled: 1
+    path: Assets/Scenes/Ending.unity
+    guid: c43be2108b9be334195ab17d120e7bd2
   m_configObjects: {}
