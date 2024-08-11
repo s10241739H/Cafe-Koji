@@ -144,6 +144,6 @@ Models: Ain :), SketchFab, UnityAsset Store
 
 Textures: Agnes, Ain 
 
-Development Tools: Unity Engine 
+Development Tools: Unity Engine, KHAI 
 
-Coding Assistance: https://chatgpt.com/ 
+Coding Assistance: https://chatgpt.com/ AND KHAI 
